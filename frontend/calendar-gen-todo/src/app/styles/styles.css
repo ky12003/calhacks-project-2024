@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.todo-list {
+  @apply max-w-4xl mx-auto p-4;
+}
+
+.todo-list h1 {
+  @apply text-2xl font-bold mb-4;
+}
+
+.todo-form {
+  @apply mb-8 p-4 bg-gray-100 rounded-lg;
+}
+
+.todo-form-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-4;
+}
+
+.todo-form-buttons {
+  @apply flex mt-4;
+}
+
+.todo-list-items {
+  @apply space-y-4;
+}
+
+.todo-item {
+  @apply flex items-center justify-between p-4 bg-white rounded-lg shadow;
+}
+
+.todo-item-content h3 {
+  @apply font-semibold;
+}
+
+.todo-item-content p {
+  @apply text-sm text-gray-600;
+}
+
+.todo-item-actions {
+  @apply flex items-center;
+}
