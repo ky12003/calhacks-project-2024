@@ -4,6 +4,14 @@ import React, { useState } from 'react'
 import TaskInput from './taskInput/taskInput'
 import TodoListItems from './todoListItems/todoListItems'
 import "./styles/styles.css"
+//import {GoogleGenerativeAI, HarmCategory, HarmBlockThreshold,} from "@google/generative-ai"
+
+// const genAI = new GoogleGenerativeAI("");
+
+// const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+// const prompt = "Does this look store-bought or homemade?";
+
+// const result = model.generateContent([prompt]).then((data) => {console.log(data)});
 
 interface Task {
   id: number
