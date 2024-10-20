@@ -1,10 +1,9 @@
 "use client" // Directive to specify that this file is a client-side file.
 
-import React, { useState, useEffect } from 'react' // Import React and useState from react.
-import TaskInput from './taskInput/taskInput' // Import TaskInput from taskInput.tsx.
-import TodoListItems from './todoListItems/todoListItems' // Import TodoListItems from todoListItems.tsx.
-import "./styles/styles.css" // Import custom styles from styles.css.
-// import {generateTasks} from '../api/calendar/generate-tasks'
+import React, { useState } from 'react'
+import TaskInput from './taskInput/taskInput'
+import TodoListItems from './todoListItems/todoListItems'
+import "./styles/styles.css"
 
 interface Task { // Define an interface for Task.
   id: number
