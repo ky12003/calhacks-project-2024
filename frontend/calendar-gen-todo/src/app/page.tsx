@@ -49,7 +49,7 @@ export default function Home() {
 
   return (
     <div className="todo-list">
-      <h1>Todo List</h1>
+      <h1>Tasklist</h1>
       
       <form onSubmit={addTask} className="todo-form">
         <div className="todo-form-grid">
@@ -107,7 +107,7 @@ export default function Home() {
             <DatePicker
               id="dueDate"
               selected={dueDate}
-              // onChange={(date: Date) => setDueDate(date)}
+              onChange={(date) => setDueDate((date ?? new Date()))}
               className="w-full px-3 py-2 border rounded-md"
             />
           </div>
