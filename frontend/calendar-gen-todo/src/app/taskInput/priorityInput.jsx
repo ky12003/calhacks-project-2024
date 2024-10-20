@@ -1,4 +1,4 @@
-export default function PriorityInput({ value, onChange }) {
+export default function PriorityInput({ value, onChange }) { // React component called PriorityInput; renders a dropdown input for priority level.
   return (
     <div>
       <label className="block text-sm font-medium text-gray-700 priority" />

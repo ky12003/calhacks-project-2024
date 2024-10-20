@@ -1,19 +1,11 @@
-"use client"
+"use client" // Directive to specify that this file is a client-side file.
 
 import React, { useState } from 'react'
 import TaskInput from './taskInput/taskInput'
 import TodoListItems from './todoListItems/todoListItems'
 import "./styles/styles.css"
-//import {GoogleGenerativeAI, HarmCategory, HarmBlockThreshold,} from "@google/generative-ai"
 
-// const genAI = new GoogleGenerativeAI("");
-
-// const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-// const prompt = "Does this look store-bought or homemade?";
-
-// const result = model.generateContent([prompt]).then((data) => {console.log(data)});
-
-interface Task {
+interface Task { // Define an interface for Task.
   id: number
   title: string
   priority: 'Low' | 'Medium' | 'High'
@@ -21,7 +13,7 @@ interface Task {
   dueDate: Date
 }
 
-export default function Home() {
+export default function Home() { // Define a functional component Home, the main component of the application.
   const [tasks, setTasks] = useState<Task[]>([])
 
   const addTask = (taskData: Omit<Task, 'id'>) => {
@@ -35,6 +27,27 @@ export default function Home() {
   const removeTask = (id: number) => {
     setTasks(tasks.filter(task => task.id !== id))
   }
+
+  // BOILER PLATE FOR GETTING DATA FROM THE API
+  // const [data, setData] = useState('');
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       const response = await generateTasks('test');
+  //       const result = await response.response.text();
+  //       setData(result);
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   }
+
+  //   fetchData();
+  // }, []);
+
+  // if (!data) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <div className="todo-list">

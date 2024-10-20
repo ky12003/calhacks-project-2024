@@ -1,7 +1,7 @@
-import DatePicker from 'react-datepicker'
-import "react-datepicker/dist/react-datepicker.css"
+import DatePicker from 'react-datepicker' // Import DatePicker component.
+import "react-datepicker/dist/react-datepicker.css" // Import CSS for DatePicker component.
 
-export default function DueDateInput({ value, onChange }) {
+export default function DueDateInput({ value, onChange }) { // DueDateInput component that renders a styled data picker input field with a label.
   return (
     <div>
       <label className="block text-sm font-medium text-gray-700 dueDate" />
