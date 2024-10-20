@@ -1,7 +1,7 @@
-import { Button } from '@mantine/core'
-import { Trash2, Lightbulb } from 'lucide-react'
+import { Button } from '@mantine/core' // Import Button component from Mantine.
+import { Trash2, Lightbulb } from 'lucide-react' // Import Trash2 and Lightbulb icons from Lucide.
 
-export default function TodoItemActions({ task, removeTask }) {
+export default function TodoItemActions({ task, removeTask }) { // TodoItemActions component renders action buttons for a to-do item (removal button & lightbulb icon button).
   return (
     <div className="todo-item-actions">
       <Button variant="ghost" onClick={() => removeTask(task.id)}>
