@@ -18,6 +18,7 @@ interface Task {
   priority: 'Low' | 'Medium' | 'High'
   estimatedTime: number
   dueDate: Date
+
 }
 
 export default function Home() {
@@ -91,7 +92,7 @@ export default function Home() {
             <Input
               id="estimatedTime"
               type="number"
-              value={estimatedTime}
+              value={estimatedTime || ''}
               onChange={(e) => setEstimatedTime(Number(e.target.value))}
               required
               min="0"
