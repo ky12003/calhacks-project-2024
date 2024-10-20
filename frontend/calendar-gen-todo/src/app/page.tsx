@@ -53,7 +53,7 @@ export default function Home() { // Define a functional component Home, the main
   return (
     <div className="todo-list">
       <h1>Tasklist</h1>
-      <TaskInput addTask={addTask} />
+      <TaskInput addTask={addTask} tasks={tasks}/>
       <TodoListItems tasks={tasks} removeTask={removeTask} />
     </div>
   )

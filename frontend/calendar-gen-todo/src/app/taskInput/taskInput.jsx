@@ -1,6 +1,6 @@
 "use client" // Directive to specify that this file is a client-side file.
 
-import React, { useState } from 'react' // Import React and useState hook.
+import React, { useState, useEffect } from 'react' // Import React and useState hook.
 import TitleInput from './titleInput' // Import TitleInput component.
 import PriorityInput from './priorityInput' // Import PriorityInput component.
 import EstimatedTimeInput from './estimatedTimeInput' // Import EstimatedTimeInput component.
@@ -8,11 +8,14 @@ import DueDateInput from './duedateInput' // Import DueDateInput component.
 import AddTaskButton from './addTaskButton' // Import AddTaskButton component.
 import GenerateButton from './generateButton' // Import GenerateButton component.
 
-export default function TaskInput({ addTask }) { // TaskInput component; task input form that allows users to enter a title, select a priority, input estimated time, and pick a due date for a task.
+import { makeCalendarObj } from '../../api/calendar/generate-calendar'
+
+export default function TaskInput({ addTask, tasks }) { // TaskInput component; task input form that allows users to enter a title, select a priority, input estimated time, and pick a due date for a task.
   const [title, setTitle] = useState('')
   const [priority, setPriority] = useState('Medium')
   const [estimatedTime, setEstimatedTime] = useState(0)
   const [dueDate, setDueDate] = useState(new Date())
+  const [data, setData] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -21,6 +24,27 @@ export default function TaskInput({ addTask }) { // TaskInput component; task in
     setPriority('Medium')
     setEstimatedTime(0)
     setDueDate(new Date())
+  }
+
+  const handleClick = async (tasks) => {
+    try {
+      console.log(tasks)
+      const response = await (await makeCalendarObj(tasks, [7, 20]) );
+      const result = await response.response.text();
+      console.log(result)
+      setData(result);
+    } catch (err) {
+        console.log(err.message)
+    }
+  }
+
+  const generateCalendar = (tasks) => {
+    if (!tasks) {
+      console.log("NO TASKS")
+    }
+
+    handleClick()  
+    
   }
 
   return (
@@ -33,7 +57,7 @@ export default function TaskInput({ addTask }) { // TaskInput component; task in
       </div>
       <div className="todo-form-buttons">
         <AddTaskButton />
-        <GenerateButton />
+        <GenerateButton tasks={tasks} generateCalendar={generateCalendar}/>
       </div>
     </form>
   )
