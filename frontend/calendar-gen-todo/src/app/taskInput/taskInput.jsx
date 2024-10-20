@@ -26,25 +26,21 @@ export default function TaskInput({ addTask, tasks }) { // TaskInput component; 
     setDueDate(new Date())
   }
 
-  const handleClick = async (tasks) => {
+  const generateCalendar = async () => {
     try {
-      console.log(tasks)
-      const response = await (await makeCalendarObj(tasks, [7, 20]) );
+      let tasksList = []
+      for (const task of tasks) {
+        tasksList.push([task["title"], task["estimatedTime"]])
+      }
+      console.log(tasksList)
+      
+      const response = await (await makeCalendarObj(tasksList, [7, 20]) );
       const result = await response.response.text();
       console.log(result)
       setData(result);
     } catch (err) {
         console.log(err.message)
     }
-  }
-
-  const generateCalendar = (tasks) => {
-    if (!tasks) {
-      console.log("NO TASKS")
-    }
-
-    handleClick()  
-    
   }
 
   return (
