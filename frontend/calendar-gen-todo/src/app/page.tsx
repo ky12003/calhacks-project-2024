@@ -1,11 +1,11 @@
-"use client"
+"use client" // Directive to specify that this file is a client-side file.
 
-import React, { useState } from 'react'
-import TaskInput from './taskInput/taskInput'
-import TodoListItems from './todoListItems/todoListItems'
-import "./styles/styles.css"
+import React, { useState } from 'react' // Import React and useState from react.
+import TaskInput from './taskInput/taskInput' // Import TaskInput from taskInput.tsx.
+import TodoListItems from './todoListItems/todoListItems' // Import TodoListItems from todoListItems.tsx.
+import "./styles/styles.css" // Import custom styles from styles.css.
 
-interface Task {
+interface Task { // Define an interface for Task.
   id: number
   title: string
   priority: 'Low' | 'Medium' | 'High'
@@ -13,7 +13,7 @@ interface Task {
   dueDate: Date
 }
 
-export default function Home() {
+export default function Home() { // Define a functional component Home, the main component of the application.
   const [tasks, setTasks] = useState<Task[]>([])
 
   const addTask = (taskData: Omit<Task, 'id'>) => {

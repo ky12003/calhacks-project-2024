@@ -1,6 +1,6 @@
-import { Input } from "@mantine/core"
+import { Input } from "@mantine/core" // Import Input component from Mantine.
 
-export default function EstimatedTimeInput({ value, onChange }) {
+export default function EstimatedTimeInput({ value, onChange }) { // Create EstimatedTimeInput component; input field for estimated times.
   return (
     <div>
       <label className="block text-sm font-medium text-gray-700 estimatedTime" />
