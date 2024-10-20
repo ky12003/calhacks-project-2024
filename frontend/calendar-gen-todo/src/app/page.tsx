@@ -5,12 +5,10 @@ import { Trash2, Lightbulb } from 'lucide-react'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
 import "./styles/styles.css"
-import Link from 'next/link';
+import Link from 'next/link'
 
-
-import { Button } from '@mantine/core';
+import { Button } from '@mantine/core'
 import { Input } from "@mantine/core"
-// import { Label } from "@mantine/core"
 
 interface Task {
   id: number
@@ -18,6 +16,13 @@ interface Task {
   priority: 'Low' | 'Medium' | 'High'
   estimatedTime: number
   dueDate: Date
+  subtasks: Subtask[]
+  showSubtasks: boolean
+}
+
+interface Subtask {
+  id: number
+  title: string
 }
 
 export default function Home() {
@@ -34,7 +39,9 @@ export default function Home() {
       title,
       priority,
       estimatedTime,
-      dueDate
+      dueDate,
+      subtasks: [],
+      showSubtasks: false
     }
     setTasks([...tasks, newTask])
     setTitle('')
@@ -45,6 +52,35 @@ export default function Home() {
 
   const removeTask = (id: number) => {
     setTasks(tasks.filter(task => task.id !== id))
+  }
+
+  const toggleSubtasks = (taskId: number) => {
+    setTasks(tasks.map(task => 
+      task.id === taskId ? { ...task, showSubtasks: !task.showSubtasks } : task
+    ))
+  }
+
+  const generateSubtasks = async (taskId: number) => {
+    const task = tasks.find(t => t.id === taskId)
+    if (!task) return
+
+    // Simulate AI-generated subtasks (replace with actual API call if you have one)
+    const generatedSubtasks = [
+      `Start ${task.title}`,
+      `Continue ${task.title}`,
+      `Finish ${task.title}`
+    ]
+
+    setTasks(tasks.map(t => {
+      if (t.id === taskId) {
+        const newSubtasks = generatedSubtasks.map((title, index) => ({
+          id: Date.now() + index,
+          title
+        }))
+        return { ...t, subtasks: [...t.subtasks, ...newSubtasks], showSubtasks: true }
+      }
+      return t
+    }))
   }
 
   return (
@@ -107,7 +143,7 @@ export default function Home() {
             <DatePicker
               id="dueDate"
               selected={dueDate}
-              // onChange={(date: Date) => setDueDate(date)}
+              onChange={(date: Date) => setDueDate(date)}
               className="w-full px-3 py-2 border rounded-md"
             />
           </div>
@@ -134,10 +170,27 @@ export default function Home() {
               <Button variant="ghost" onClick={() => removeTask(task.id)}>
                 <Trash2 className="h-5 w-5" />
               </Button>
-              <Button variant="ghost">
+              <Button variant="ghost" onClick={() => generateSubtasks(task.id)}>
                 <Lightbulb className="h-5 w-5" />
               </Button>
+              {task.subtasks.length > 0 && (
+                <Button 
+                  variant="ghost" 
+                  onClick={() => toggleSubtasks(task.id)}
+                >
+                  {task.showSubtasks ? "▲" : "▼"}
+                </Button>
+              )}
             </div>
+            {task.showSubtasks && task.subtasks.length > 0 && (
+              <div className="subtasks-list ml-6 mt-2">
+                {task.subtasks.map(subtask => (
+                  <div key={subtask.id} className="subtask-item">
+                    {subtask.title}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>
